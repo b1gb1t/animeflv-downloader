@@ -33,7 +33,7 @@ def rangeEpisodes(arg_value, pat=re.compile(r"^[0-9]+-[0-9]+$")):
         raise argparse.ArgumentTypeError
     return arg_value
 
-# TODO: threading
+
 def megaDownload(api, episodes, wanted, outdir):
     notFound = []
     downloaded = []
@@ -89,7 +89,6 @@ if __name__ == '__main__':
         stop = int(args.episodes.split('-')[1])
         for i in range(start,stop+1):
             wanted.append(i)
-        #print(f'Episodes to download: {wanted}')
 
     api = AnimeFLV()
     options = api.search(args.anime)
@@ -102,8 +101,7 @@ if __name__ == '__main__':
         exit(-1)
     else:
         anime = options[0]['id']
-
-    #print(anime)   
+ 
     episodes =  api.getAnimeInfo(anime)['episodes']
 
     megaDownload(api, episodes, wanted, args.outputdir)
